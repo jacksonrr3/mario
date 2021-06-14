@@ -19,19 +19,22 @@ function printPyramid(height) {
 
     // TODO
     // print that pyramid!
-    function printPyramid(height){
-        let n = 2;
-        for (let i = 0; i < height; i++, n++){
-            st = '';
-            for (let j = 0; j < (height - i - 1); j++){
-                st += ' ';
-            }
-            for (let j = 0; j < n; j++){
-                st += '#';
-            }
-            console.log(st);
+    const pyramid = document.getElementById("pyramid");
+    pyramid.removeChild(document.getElementById("construction"));
+    let n = 2;
+    for (let i = 0; i < height; i++, n++){
+        let rawString = '';
+        for (let j = 0; j < (height - i - 1); j++){
+            rawString += ' ';
         }
-    }
-   
+        for (let j = 0; j < n; j++){
+            rawString += '#';
+        }
 
+        const raw = document.createElement('p');
+        raw.innerText = rawString;
+        pyramid.appendChild(raw);
+        console.log(rawString);
+    }
+    
 }
