@@ -11,6 +11,18 @@
 <body>
     <h1>Mario 2</h1>
     <h3>Behold this wonderful pyramid:</h3>
+    <div id="panel">
+        <label for="brick-selector">Choose brick type</label>
+        <select id="brick-selector">
+            <option value="#">#</option>
+            <option value="$">$</option>
+            <option value="@">@</option>
+            <option value="X">X</option>
+        </select>
+        <label for="height-selector">   Choose height value</label>
+        <input id="height-selector" type="range" name="height" min="1" max="20" step="1">
+        <span id="height-value"></span>
+    </div>
     <div id="pyramid">
         <!-- Our pyramid will go inside her-->
         <div id="construction">

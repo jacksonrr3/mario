@@ -1,7 +1,3 @@
-
-printPyramid(5);
-
-
 /*
  * printPyramid
  *
@@ -13,28 +9,42 @@ printPyramid(5);
  *       #####
  *      ######
  */
-function printPyramid(height) {
-    // console.log("Uh oh... the pyramid is under construction.");
-    // console.log("Check back soon, our developers are hard at work as we speak!");
+let pyramidHeight = 10;
+let pyramidBrick = '#';
+const pyramid = document.getElementById("pyramid");
+pyramid.removeChild(document.getElementById("construction"));
+printPyramid(pyramid, pyramidHeight, pyramidBrick);
 
-    // TODO
-    // print that pyramid!
-    const pyramid = document.getElementById("pyramid");
-    pyramid.removeChild(document.getElementById("construction"));
-    let n = 2;
-    for (let i = 0; i < height; i++, n++){
-        let rawString = '';
-        for (let j = 0; j < (height - i - 1); j++){
-            rawString += ' ';
-        }
-        for (let j = 0; j < n; j++){
-            rawString += '#';
-        }
+const brickSelector = document.getElementById('brick-selector');
+brickSelector.addEventListener('change', () => {
+    pyramidBrick = brickSelector.value;
+    printPyramid(pyramid, pyramidHeight, pyramidBrick);
+});
 
+const heightValue = document.getElementById('height-value');
+heightValue.textContent = pyramidHeight;
+const heightSelector = document.getElementById('height-selector');
+heightSelector.setAttribute("value", pyramidHeight);
+heightSelector.addEventListener('input', () => {
+    pyramidHeight = heightSelector.value;
+    heightValue.textContent = pyramidHeight;
+    printPyramid(pyramid, pyramidHeight, pyramidBrick);
+});
+
+function printPyramid(element, height, brick) {
+    deleteChilds(element)
+    let brickCounter = 2;
+    for (let rowIndex = 1; rowIndex <= height; rowIndex++, brickCounter++){
+        let rawString = '_'.repeat(height - rowIndex);
+        rawString += brick.repeat(brickCounter);
         const raw = document.createElement('p');
         raw.innerText = rawString;
-        pyramid.appendChild(raw);
-        console.log(rawString);
+        element.appendChild(raw);
     }
-    
+}
+
+function deleteChilds(element){
+    while(element.firstChild){
+        element.removeChild(element.firstChild);
+    }
 }
